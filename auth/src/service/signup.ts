@@ -3,6 +3,10 @@ import { DataSource } from 'typeorm';
 import { BadRequestError } from '@fbticketss/common';
 import { databaseSource } from '../database/dataSource';
 import { Password } from '../passwordService/password';
+import { EmailCreatedPublisher } from './../events/publishers/mail-created-publisher';
+import { natsWrapper } from '../nats-wrapper';
+import { EmailTemplate } from './../mailTemplate/EmailTemplate';
+import { TokenProvider } from './../jwt/TokenProvider';
 
 class SignupService {
   private cn!: DataSource;
@@ -21,7 +25,15 @@ class SignupService {
       const hashpsw = await Password.toHash(user.password);
       user.password = hashpsw;
       const valUser = await userRepo.save(user);
-      // sımdı emaıl yollama ıslemı yapılacak
+      const urlToken = TokenProvider.generateUrlToken(valUser.id);
+      const emailTemplate = EmailTemplate._templateRunRecursive(
+        valUser,
+        urlToken
+      ).run(); //? object composition design pattern
+      await new EmailCreatedPublisher(natsWrapper.client).publish({
+        email: valUser.email,
+        template: emailTemplate,
+      });
       return User.removePassword(valUser);
     } catch (error: any) {
       throw error;
