@@ -25,7 +25,7 @@ export class User extends BaseEntity {
   @Column()
   @Length(4, 20)
   @IsNotEmpty()
-  public lastname!: string;
+  public lastName!: string;
 
   @Column({ select: false })
   @Length(4, 100)
