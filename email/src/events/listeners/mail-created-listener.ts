@@ -8,8 +8,8 @@ export class EmailCreatedListener extends Listener<EmailCreatedEvent> {
   queueGroupName = queueGroupName;
 
   async onMessage(data: EmailCreatedEvent['data'], msg: Message) {
-    await sendEmail(data);
-
+    // await sendEmail(data);
+    console.log(data.template);
     msg.ack();
   }
 }
