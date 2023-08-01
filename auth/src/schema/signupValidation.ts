@@ -13,7 +13,7 @@ const validationSignup = {
       return true;
     }),
     body('name').not().isEmpty().withMessage('Name is required'),
-    body('lastname').not().isEmpty().withMessage('Lastname is required'),
+    body('lastName').not().isEmpty().withMessage('Lastname is required'),
   ],
 };
 
