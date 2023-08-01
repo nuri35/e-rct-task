@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authrct-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authrct
+  template:
+    metadata:
+      labels:
+        app: authrct
+    spec:
+      containers:
+        - name: authrct
+          image: nurettinsenbackend/authrct
+          env:
+            - name: NODE_ENV
+              value: development
+            - name: PORT
+              value: "3000"
+            - name: DB_NAME
+              value: postgres
+            - name: DB_HOST
+              value: db-postgres-srv
+            - name: DB_PASS
+              value: postgres
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USER
+              value: postgres
+
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authrct-srv
+spec:
+  selector:
+    app: authrct
+  ports:
+    - name: authrct
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

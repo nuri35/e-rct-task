@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-postgres-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-postgres
+  template:
+    metadata:
+      labels:
+        app: db-postgres
+    spec:
+      containers:
+        - name: db-postgres
+          image: postgres:14-alpine
+          env:
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "postgres"
+            - name: POSTGRES_DB
+              value: "postgres"
+          # volumeMounts:
+          #   - name: data
+          #     mountPath: /var/lib/postgresql/data
+      # volumes:
+      #   - name: data
+      #     persistentVolumeClaim:
+      #       claimName: db-postgres-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-postgres-srv
+spec:
+  selector:
+    app: db-postgres
+  ports:
+    - name: db
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
