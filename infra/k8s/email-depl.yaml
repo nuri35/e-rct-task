@@ -26,16 +26,12 @@ spec:
               value: "http://nats-srv:4222"
             - name: NATS_CLUSTER_ID
               value: rcting
-            # - name: ACCOUNT_SID
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: account-sid
-            #       key: ACCOUNT_SID
-            # - name: AUTH_TOKEN
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: auth-token
-            #       key: AUTH_TOKEN
+            - name: MAIL_HOST
+              value: "smtp.office365.com"
+            - name: USER_MAIL_AUTH
+              value: "recep.mut@bestnet.com.tr"
+            - name: USER_MAIL_PASSWORD
+              value: "Fub38056"
 
 ---
 apiVersion: v1
