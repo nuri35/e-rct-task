@@ -5,6 +5,7 @@ import cookieSession from 'cookie-session';
 import { signupRouter } from './routes/signup';
 import { mailVerifyRouter } from './routes/mailVerify';
 import { signinRouter } from './routes/signin';
+import { signoutRouter } from './routes/signout';
 import { errorHandler, NotFoundError, currentUser } from '@fbticketss/common';
 import morgan from 'morgan';
 
@@ -15,13 +16,15 @@ app.use(json());
 app.use(
   cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !== 'test',
+    secure: true,
   })
 );
+
+app.use(currentUser);
 app.use(signupRouter);
 app.use(mailVerifyRouter);
 app.use(signinRouter);
-app.use(currentUser);
+app.use(signoutRouter);
 
 app.all('*', async (req, res) => {
   //
