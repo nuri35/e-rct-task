@@ -1,6 +1,6 @@
 import { User } from '../entities/User';
 import { DataSource } from 'typeorm';
-import { BadRequestError } from '@fbticketss/common';
+import { BadRequestError, EmailType } from '@fbticketss/common';
 import { databaseSource } from '../database/dataSource';
 import { Password } from '../passwordService/password';
 import { EmailCreatedPublisher } from './../events/publishers/mail-created-publisher';
@@ -29,10 +29,11 @@ class SignupService {
       const emailTemplate = EmailTemplate._templateRunRecursive(
         valUser,
         urlToken
-      ).run(); //? object composition design pattern
+      ).run(); //! object composition design pattern
       await new EmailCreatedPublisher(natsWrapper.client).publish({
         email: valUser.email,
         template: emailTemplate,
+        type: EmailType.Verify,
       });
       return User.removePassword(valUser);
     } catch (error: any) {
