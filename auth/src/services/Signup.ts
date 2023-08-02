@@ -7,13 +7,14 @@ import { EmailCreatedPublisher } from '../events/publishers/mail-created-publish
 import { natsWrapper } from '../nats-wrapper';
 import { EmailTemplate } from '../mailTemplate/EmailTemplate';
 import { TokenProvider } from '../jwt/TokenProvider';
+import { SignupInput } from './SrvInterfaces';
 
 class SignupService {
   private cn!: DataSource;
   constructor() {
     this.cn = databaseSource._connection;
   }
-  async signup(user: User) {
+  async signup(user: SignupInput) {
     try {
       const userRepo = this.cn.getRepository(User);
       const existingEmail = await userRepo.findOne({
@@ -24,7 +25,7 @@ class SignupService {
       }
       const hashpsw = await Password.toHash(user.password);
       user.password = hashpsw;
-      const valUser = await userRepo.save(user);
+      const valUser = (await userRepo.save(user)) as User;
       const urlToken = TokenProvider.generateUrlToken(valUser.id);
       const emailTemplate = EmailTemplate._templateRunRecursive(
         valUser,
@@ -35,7 +36,10 @@ class SignupService {
         template: emailTemplate,
         type: EmailType.Verify,
       });
-      return User.removePassword(valUser);
+
+      const { password, ...userWithoutPassword } = valUser;
+
+      return userWithoutPassword;
     } catch (error: any) {
       throw error;
     }
