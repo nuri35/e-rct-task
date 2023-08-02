@@ -3,6 +3,8 @@ import { json } from 'body-parser';
 require('express-async-errors');
 import cookieSession from 'cookie-session';
 import { signupRouter } from './routes/signup';
+import { mailVerifyRouter } from './routes/mailVerify';
+import { signinRouter } from './routes/signin';
 import { errorHandler, NotFoundError, currentUser } from '@fbticketss/common';
 import morgan from 'morgan';
 
@@ -17,6 +19,8 @@ app.use(
   })
 );
 app.use(signupRouter);
+app.use(mailVerifyRouter);
+app.use(signinRouter);
 app.use(currentUser);
 
 app.all('*', async (req, res) => {
