@@ -1,16 +1,6 @@
 import { IsNotEmpty, Length, IsEmail } from 'class-validator';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  Unique,
-  UpdateDateColumn,
-  BeforeInsert,
-} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from './Base';
-import { Exclude, Transform } from 'class-transformer';
 
 @Entity()
 export class User extends BaseEntity {
@@ -27,16 +17,10 @@ export class User extends BaseEntity {
   @IsNotEmpty()
   public lastName!: string;
 
-  @Column({ select: false })
+  @Column()
   @Length(4, 100)
   @IsNotEmpty()
   public password!: string;
-
-  static removePassword(userObj: User) {
-    return Object.fromEntries(
-      Object.entries(userObj).filter(([key, val]) => key !== 'password')
-    );
-  }
 
   @Column()
   @Length(4, 20)
