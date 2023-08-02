@@ -37,9 +37,11 @@ const start = async () => {
     });
     process.on('SIGINT', () => natsWrapper.client.close());
     process.on('SIGTERM', () => natsWrapper.client.close());
+    await import('./service/EmailService');
+
     new EmailCreatedListener(natsWrapper.client).listen();
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.message);
   }
 
   app.listen(process.env.PORT, () => {
