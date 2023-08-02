@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { SignupSrv } from '../service/signup';
 import { StatusCodes, ReasonPhrases } from 'http-status-codes';
+import { SignupSrv } from '../services/Signup';
 
 class SignupController {
-  async SignupHandler(req: Request, res: Response) {
+  async signupHandler(req: Request, res: Response) {
     try {
       const signupData = await SignupSrv.signup(req.body);
       return res.status(StatusCodes.CREATED).send({
@@ -15,5 +15,5 @@ class SignupController {
     }
   }
 }
-const SignupCntrol = new SignupController();
-export { SignupCntrol };
+const signupCntrol = new SignupController();
+export { signupCntrol as SignupCntrol };

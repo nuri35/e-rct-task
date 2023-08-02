@@ -9,7 +9,7 @@ router.post(
   '/api/auth/signup',
   validationSignup.signupSchema,
   validateRequest,
-  SignupCntrol.SignupHandler
+  SignupCntrol.signupHandler
 );
 
 export { router as signupRouter };
