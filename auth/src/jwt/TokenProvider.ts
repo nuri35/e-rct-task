@@ -12,11 +12,6 @@ export class TokenProvider {
 
   static generateUrlToken(id: number): string {
     const token = TokenProvider.signJWT(id);
-    return ` 
-    http://
-    ${process.env.AUTH_HOST}
-    /api/auth/wVerify
-    ?token=${token}
-    `;
+    return `http://${process.env.AUTH_HOST}/api/auth/wVerify?token=${token}`;
   }
 }
