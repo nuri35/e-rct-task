@@ -1,5 +1,9 @@
 import jwt from 'jsonwebtoken';
 
+interface UserPayload {
+  id: number;
+}
+
 export class TokenProvider {
   constructor() {}
 
@@ -13,5 +17,10 @@ export class TokenProvider {
   static generateUrlToken(id: number): string {
     const token = TokenProvider.signJWT(id);
     return `http://${process.env.AUTH_HOST}/api/auth/wVerify?token=${token}`;
+  }
+
+  static verifyJWT(token: string): UserPayload {
+    const decoded = jwt.verify(token, process.env.JWT_KEY!) as UserPayload;
+    return decoded;
   }
 }
