@@ -1,6 +1,7 @@
 import { IsNotEmpty, Length, IsEmail } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from './Base';
+import Account from './Account';
 
 @Entity()
 export class User extends BaseEntity {
@@ -31,6 +32,9 @@ export class User extends BaseEntity {
     default: false,
   })
   public isActive!: boolean;
+
+  @ManyToOne(() => Account, (account) => account.user, { eager: true })
+  account!: Account;
 }
 
 export default User;

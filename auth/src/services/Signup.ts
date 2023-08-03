@@ -26,6 +26,7 @@ class SignupService {
       const hashpsw = await Password.toHash(user.password);
       user.password = hashpsw;
       const valUser = (await userRepo.save(user)) as User;
+
       const urlToken = TokenProvider.generateUrlToken(valUser.id);
       const emailTemplate = EmailTemplate._templateRunRecursive(
         valUser,
