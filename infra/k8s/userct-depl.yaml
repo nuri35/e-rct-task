@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: authrct-depl
+  name: userct-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: authrct
+      app: userct
   template:
     metadata:
       labels:
-        app: authrct
+        app: userct
     spec:
       containers:
-        - name: authrct
-          image: nurettinsenbackend/authrct
+        - name: userct
+          image: nurettinsenbackend/userct
           env:
             - name: NODE_ENV
               value: development
@@ -51,12 +51,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: authrct-srv
+  name: userct-srv
 spec:
   selector:
-    app: authrct
+    app: userct
   ports:
-    - name: authrct
+    - name: userct
       protocol: TCP
       port: 3000
       targetPort: 3000

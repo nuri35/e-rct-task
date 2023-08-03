@@ -8,8 +8,8 @@ build:
   local:
     push: false
   artifacts:
-    - image: nurettinsenbackend/authrct
-      context: auth
+    - image: nurettinsenbackend/userct
+      context: userct
       docker:
         dockerfile: Dockerfile
       sync:

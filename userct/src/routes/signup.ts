@@ -6,7 +6,7 @@ import { validationSignup } from '../schema/signupValidation';
 const router = express.Router();
 
 router.post(
-  '/api/auth/signup',
+  '/api/user/signup',
   validationSignup.signupSchema,
   validateRequest,
   SignupCntrol.signupHandler

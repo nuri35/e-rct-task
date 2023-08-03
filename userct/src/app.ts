@@ -7,6 +7,7 @@ import { signupRouter } from './routes/signup';
 import { mailVerifyRouter } from './routes/mailVerify';
 import { signinRouter } from './routes/signin';
 import { signoutRouter } from './routes/signout';
+import { accountRouter } from './routes/account';
 import { errorHandler, NotFoundError, currentUser } from '@fbticketss/common';
 import morgan from 'morgan';
 
@@ -26,6 +27,7 @@ app.use(signupRouter);
 app.use(mailVerifyRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
+app.use(accountRouter);
 
 app.all('*', async (req, res) => {
   //

@@ -6,7 +6,7 @@ import { SigninCntrol } from '../controllers/Signin';
 const router = express.Router();
 
 router.post(
-  '/api/auth/signin',
+  '/api/user/signin',
   validationSignin.signinSchema,
   validateRequest,
   SigninCntrol.signinHandler
