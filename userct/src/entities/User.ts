@@ -1,9 +1,16 @@
-import { IsNotEmpty, Length, IsEmail } from 'class-validator';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { IsNotEmpty, Length, IsEmail, Allow, isEmpty } from 'class-validator';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  Unique,
+} from 'typeorm';
 import { BaseEntity } from './Base';
 import Account from './Account';
 
 @Entity()
+@Unique(['email'])
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id!: number;
@@ -23,6 +30,11 @@ export class User extends BaseEntity {
   @IsNotEmpty()
   public password!: string;
 
+  // device
+
+  @Column({ nullable: true })
+  public deviceUser!: string;
+
   @Column()
   @Length(4, 20)
   @IsEmail()
@@ -34,7 +46,7 @@ export class User extends BaseEntity {
   public isActive!: boolean;
 
   @ManyToOne(() => Account, (account) => account.user, { eager: true })
-  account!: Account;
+  account!: Account | null;
 }
 
 export default User;
