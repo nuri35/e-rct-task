@@ -38,7 +38,7 @@ spec:
                   name: jwt-secret
                   key: JWT_KEY
             - name: JWT_EXPIRES_IN
-              value: "1m"
+              value: "3m"
             - name: NATS_CLIENT_ID
               valueFrom:
                 fieldRef:

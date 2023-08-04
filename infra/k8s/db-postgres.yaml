@@ -22,13 +22,13 @@ spec:
               value: "postgres"
             - name: POSTGRES_DB
               value: "postgres"
-          # volumeMounts:
-          #   - name: data
-          #     mountPath: /var/lib/postgresql/data
-      # volumes:
-      #   - name: data
-      #     persistentVolumeClaim:
-      #       claimName: db-postgres-pvc
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: db-postgres-pvc
 
 ---
 apiVersion: v1
