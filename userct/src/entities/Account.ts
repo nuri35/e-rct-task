@@ -1,9 +1,17 @@
 import { IsNotEmpty, Length, IsEmail } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  Unique,
+} from 'typeorm';
 import { BaseEntity } from './Base';
 import { User } from './User';
 
 @Entity()
+@Unique(['accountEmail'])
+@Unique(['accountPhone'])
 export class Account extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id!: number;
@@ -14,7 +22,6 @@ export class Account extends BaseEntity {
   public accountName!: string;
 
   @Column()
-  @Length(4, 20)
   @IsEmail()
   public accountEmail!: string;
 
@@ -24,6 +31,7 @@ export class Account extends BaseEntity {
   public accountTitle!: string;
 
   @Column()
+  @Length(4, 20)
   @IsNotEmpty()
   public accountIdtaxNumber!: string;
 
@@ -32,10 +40,12 @@ export class Account extends BaseEntity {
   public accountPhone!: string;
 
   @Column()
+  @Length(4, 50)
   @IsNotEmpty()
   public accountAddress!: string;
 
   @Column()
+  @Length(4, 10)
   @IsNotEmpty()
   public accountCountry!: string;
 
