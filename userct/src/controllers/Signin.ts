@@ -7,7 +7,7 @@ class SigninController {
   async signinHandler(req: Request, res: Response) {
     try {
       const valueObj = await SigninSrv.signin(req.body as SigninInput);
-      // // Store it on session object
+
       req.session = {
         jwt: valueObj.token,
       };
