@@ -11,7 +11,7 @@ class SignupController {
         message: ReasonPhrases.CREATED,
         data: signupData,
       });
-    } catch (error) {
+    } catch (error: any) {
       throw error;
     }
   }
