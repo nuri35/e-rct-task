@@ -18,6 +18,7 @@ export const sessionControl = async (
     if (!existingUser) {
       throw new BadRequestError('Invalid credentials');
     }
+
     if (existingUser.deviceUser && req.currentUser) {
       if (existingUser.deviceUser !== deviceValue) {
         existingUser.deviceUser = deviceValue;

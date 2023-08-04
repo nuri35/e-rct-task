@@ -20,7 +20,7 @@ class DatabaseSource {
         username: dbConfig.username,
         password: dbConfig.password,
         database: dbConfig.database,
-        synchronize: true,
+        synchronize: process.env.NODE_ENV === 'development' ? true : false,
         entities: ['src/entities/*.ts'],
       });
 
