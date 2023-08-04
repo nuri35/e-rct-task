@@ -13,11 +13,10 @@
   <p align="center">
     An awesome e-rct-task!
     <br />
-    <a href="https://github.com/nurie487/e-rct-task/-/blob/main/README.md"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/nuri35/e-rct-task"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://githab.com/nurie487/e-rct-task">View Demo</a>
-    <a href="https://githab.com/nurie487/e-rct-task/-/issues">Request Feature</a>
+    
   </p>
 </div>
 
