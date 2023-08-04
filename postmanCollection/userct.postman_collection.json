@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "e48c6a6a-8fd0-4791-8035-bb5107da942a",
+		"name": "userct",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17187269"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"nurie487@gmail.com\",\r\n    \"password\": \"sdsdfdd22Ks\",\r\n    \"name\": \"nurettin\",\r\n    \"lastName\": \"sen\"\r\n \r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rct.dev/api/user/signup",
+					"protocol": "https",
+					"host": [
+						"rct",
+						"dev"
+					],
+					"path": [
+						"api",
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VerifyEmail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://rct.dev/api/auth/wVerify?token=\n",
+					"protocol": "http",
+					"host": [
+						"rct",
+						"dev"
+					],
+					"path": [
+						"api",
+						"auth",
+						"wVerify"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"nurie487@gmail.com\",\r\n    \"password\": \"sdsdfdd22Ks\"\r\n \r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rct.dev/api/user/signin",
+					"protocol": "https",
+					"host": [
+						"rct",
+						"dev"
+					],
+					"path": [
+						"api",
+						"user",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://rct.dev/api/user/signout",
+					"protocol": "https",
+					"host": [
+						"rct",
+						"dev"
+					],
+					"path": [
+						"api",
+						"user",
+						"signout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "accountCreate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountName\": \"dsdsdsd\",\r\n    \"accountEmail\": \"nurie487@gmail.com\",\r\n    \"accountTitle\": \"gffklkllk\",\r\n    \"accountIdtaxNumber\": \"45555\",\r\n    \"accountPhone\": \"+905360565535\",\r\n    \"accountAddress\": \"gfgfgfg\",\r\n    \"accountCountry\": \"Turkey\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rct.dev/api/user/account",
+					"protocol": "https",
+					"host": [
+						"rct",
+						"dev"
+					],
+					"path": [
+						"api",
+						"user",
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "accountUpdated",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountEmail\": \"nurie487@gmail.com\",\r\n    \"accountIdtaxNumber\": \"1111111111111111\",\r\n    \"accountName\": \"test\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rct.dev/api/user/account",
+					"protocol": "https",
+					"host": [
+						"rct",
+						"dev"
+					],
+					"path": [
+						"api",
+						"user",
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "accountDelete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://rct.dev/api/user/account",
+					"protocol": "https",
+					"host": [
+						"rct",
+						"dev"
+					],
+					"path": [
+						"api",
+						"user",
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "accountGet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rct.dev/api/user/account",
+					"protocol": "https",
+					"host": [
+						"rct",
+						"dev"
+					],
+					"path": [
+						"api",
+						"user",
+						"account"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
